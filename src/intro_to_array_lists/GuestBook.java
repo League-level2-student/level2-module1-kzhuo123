@@ -16,7 +16,7 @@ public class GuestBook implements ActionListener {
 	JButton button1;
 	String s;
 	String t;
-	
+	ArrayList<String> names = new ArrayList<String>();
 public static void main(String[] args) {
 	GuestBook run = new GuestBook();
 	run.makeButtons();
@@ -38,6 +38,7 @@ public static void main(String[] args) {
 		button.setText("Add Name");
 		button1.setText("View Names");
 		button.addActionListener(this);
+		button1.addActionListener(this);
 			frame.pack();
 			
 			}
@@ -48,17 +49,21 @@ public static void main(String[] args) {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ArrayList<String> names = new ArrayList<String>();
+	String message="";
 		 JButton buttonClicked = (JButton) e.getSource();
 		 if (buttonClicked== button) {
 		names.add(JOptionPane.showInputDialog("Enter a Name"));
 		}
-		 if (buttonClicked == button1) {
-			 for(int i = 1; i < names.size(); i++){
+		 
+		 else if (buttonClicked == button1) {
+			 for(int i = 0; i < names.size(); i++){
 					String s = names.get(i);
-					JOptionPane.showMessageDialog(null, ("Guest Number # " + i + s));
+				 message+= ("Guest #:"+(i+1)+" "+ s+ "\n");
 				}
-		}
+			JOptionPane.showMessageDialog(null, message);
+			
+		 }
+		 
 		 
 		 
 	}	
